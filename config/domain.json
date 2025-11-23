@@ -1,0 +1,113 @@
+{
+  "$schema": "./domain.schema.json",
+  "domain": "business_intelligence",
+  "version": "1.0.0",
+
+  "visualization": {
+    "mode": "mesh",
+    "colorScheme": "centrality",
+    "centralEntities": [],
+    "defaultAlgorithm": "pagerank"
+  },
+
+  "algorithms": {
+    "pagerank": {
+      "dampingFactor": 0.85,
+      "maxIterations": 100,
+      "convergenceTolerance": 0.0001
+    },
+    "eigenvector": {
+      "maxIterations": 100,
+      "convergenceTolerance": 0.0001
+    }
+  },
+
+  "entityTypes": {
+    "company": {
+      "color": "#3B82F6",
+      "icon": "building"
+    },
+    "person": {
+      "color": "#10B981",
+      "icon": "user"
+    },
+    "organization": {
+      "color": "#8B5CF6",
+      "icon": "organization"
+    },
+    "location": {
+      "color": "#F59E0B",
+      "icon": "map-pin"
+    }
+  },
+
+  "relationshipTypes": {
+    "owns": {
+      "color": "#EF4444",
+      "weight": 3,
+      "requiresQuantity": true
+    },
+    "controls": {
+      "color": "#DC2626",
+      "weight": 3
+    },
+    "invests_in": {
+      "color": "#7C3AED",
+      "weight": 2,
+      "requiresQuantity": true
+    },
+    "partners_with": {
+      "color": "#2563EB",
+      "weight": 2
+    },
+    "supplies": {
+      "color": "#059669",
+      "weight": 1
+    },
+    "competes_with": {
+      "color": "#F97316",
+      "weight": 1
+    },
+    "employs": {
+      "color": "#0891B2",
+      "weight": 1
+    }
+  },
+
+  "display": {
+    "maxNodesDefault": 500,
+    "maxEdgesDefault": 1000,
+    "nodeSize": {
+      "min": 5,
+      "max": 30,
+      "scaleByCentrality": true
+    },
+    "edgeWidth": {
+      "min": 1,
+      "max": 5,
+      "scaleByWeight": true
+    },
+    "labels": {
+      "showAll": false,
+      "showTopN": 20,
+      "fontSize": 12
+    }
+  },
+
+  "filters": {
+    "defaultDateRange": {
+      "enabled": false,
+      "min": null,
+      "max": null
+    },
+    "centralityThreshold": {
+      "enabled": false,
+      "min": 0.0,
+      "max": 1.0
+    },
+    "ownershipThreshold": {
+      "enabled": false,
+      "minPercentage": 0
+    }
+  }
+}

@@ -1,0 +1,152 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "BGIS Domain Configuration",
+  "description": "Configuration schema for Business Graph Intelligence System domain settings",
+  "type": "object",
+  "required": ["domain", "version", "visualization"],
+  "properties": {
+    "domain": {
+      "type": "string",
+      "description": "Domain identifier (e.g., business_intelligence, supply_chain, corporate_ownership)"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "Configuration version (semantic versioning)"
+    },
+    "visualization": {
+      "type": "object",
+      "required": ["mode", "colorScheme"],
+      "properties": {
+        "mode": {
+          "type": "string",
+          "enum": ["mesh", "radial"],
+          "description": "Graph layout mode: mesh (multi-polar) or radial (single-center)"
+        },
+        "colorScheme": {
+          "type": "string",
+          "enum": ["centrality", "distance", "category", "custom"],
+          "description": "Node coloring scheme"
+        },
+        "centralEntities": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Central entities for radial mode (empty for mesh mode)"
+        },
+        "defaultAlgorithm": {
+          "type": "string",
+          "enum": ["pagerank", "eigenvector"],
+          "description": "Default centrality algorithm"
+        }
+      }
+    },
+    "algorithms": {
+      "type": "object",
+      "properties": {
+        "pagerank": {
+          "type": "object",
+          "properties": {
+            "dampingFactor": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1,
+              "description": "PageRank damping factor (typically 0.85)"
+            },
+            "maxIterations": {
+              "type": "integer",
+              "minimum": 1,
+              "description": "Maximum iterations for convergence"
+            },
+            "convergenceTolerance": {
+              "type": "number",
+              "minimum": 0,
+              "description": "Convergence threshold"
+            }
+          }
+        },
+        "eigenvector": {
+          "type": "object",
+          "properties": {
+            "maxIterations": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "convergenceTolerance": {
+              "type": "number",
+              "minimum": 0
+            }
+          }
+        }
+      }
+    },
+    "entityTypes": {
+      "type": "object",
+      "patternProperties": {
+        "^[a-z_]+$": {
+          "type": "object",
+          "properties": {
+            "color": {
+              "type": "string",
+              "pattern": "^#[0-9A-Fa-f]{6}$"
+            },
+            "icon": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "relationshipTypes": {
+      "type": "object",
+      "patternProperties": {
+        "^[a-z_]+$": {
+          "type": "object",
+          "properties": {
+            "color": {
+              "type": "string",
+              "pattern": "^#[0-9A-Fa-f]{6}$"
+            },
+            "weight": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 5
+            },
+            "requiresQuantity": {
+              "type": "boolean",
+              "description": "Whether this relationship requires quantitative data (e.g., ownership %)"
+            }
+          }
+        }
+      }
+    },
+    "display": {
+      "type": "object",
+      "properties": {
+        "maxNodesDefault": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "maxEdgesDefault": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "nodeSize": {
+          "type": "object",
+          "properties": {
+            "min": { "type": "number" },
+            "max": { "type": "number" },
+            "scaleByCentrality": { "type": "boolean" }
+          }
+        },
+        "edgeWidth": {
+          "type": "object",
+          "properties": {
+            "min": { "type": "number" },
+            "max": { "type": "number" },
+            "scaleByWeight": { "type": "boolean" }
+          }
+        }
+      }
+    }
+  }
+}
