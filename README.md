@@ -179,22 +179,35 @@ Edit `config/domain.json` to customize:
 
 ## Development Status
 
-### ✅ Phase 1 - Batch 2 Complete
+### ✅ Phase 1 - Complete (All 3 Batches)
 
+**Batch 1: Core Algorithms & Testing**
 - [x] Project structure
 - [x] Package configuration
-- [x] Graph algorithms implementation
-- [x] Comprehensive test suite
-- [x] API server with centrality endpoints
+- [x] Graph algorithms implementation (PageRank, Eigenvector, BFS, Components)
+- [x] Comprehensive test suite (22 tests, 100% statement coverage)
+
+**Batch 2: API & Database**
+- [x] API server with centrality endpoints (V2)
 - [x] Database migration scripts
 - [x] Domain configuration system
+- [x] Migration runner with transaction safety
 
-### ⏸️ Remaining Work
+**Batch 3: Frontend**
+- [x] React + Vite + TypeScript setup
+- [x] NetworkGraph component (mesh architecture)
+- [x] API integration layer
+- [x] Centrality-based visualization
+- [x] Algorithm selector (PageRank/Eigenvector)
 
-- [ ] Frontend NetworkGraph component (React + D3)
-- [ ] Precompute centrality batch job
-- [ ] Integration tests
-- [ ] Documentation & screenshots
+### ⏸️ Future Enhancements (Post-Phase 1)
+
+- [ ] Precompute centrality batch job (cron)
+- [ ] Integration tests (API + Frontend)
+- [ ] Sample business dataset
+- [ ] Deployment configuration
+- [ ] Performance benchmarks
+- [ ] Visual comparison screenshots
 
 ## Architecture Transformation
 
